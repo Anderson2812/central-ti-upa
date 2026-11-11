@@ -6,10 +6,33 @@
   <style>
     @page { size: A4 portrait; margin: 12mm 15mm; }
     * { box-sizing: border-box; }
-    body { font-family: "Segoe UI", system-ui, Arial, sans-serif; margin: 0; color: #0f172a; }
-    .nao-imprimir { background: #f1f5f9; padding: 14px 20px; border-bottom: 1px solid #cbd5e1; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
-    .btn { background: #0f766e; color: #fff; border: 0; padding: 10px 16px; border-radius: 8px; font-weight: 700; cursor: pointer; }
+    body { font-family: "Segoe UI", system-ui, Arial, sans-serif; margin: 0; color: #0f172a; background: #fff; }
+    .nao-imprimir {
+      background: #f1f5f9;
+      padding: 14px 20px;
+      border-bottom: 1px solid #cbd5e1;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .btn {
+      background: #0f766e;
+      color: #fff;
+      border: 0;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn:hover { background: #115e59; }
     .btn.sec { background: #e2e8f0; color: #0f172a; }
+    .btn.sec:hover { background: #cbd5e1; }
 
     /* Cada folha A4 vira uma capa. A dobra no meio (linha pontilhada) fecha o maço de A5 como um livro. */
     .pagina-a4 {
@@ -100,7 +123,7 @@
   <div class="nao-imprimir">
     <b>Gerador de Capas A5 (1 folha A4 = 1 capa livreto):</b>
     <label>Setor:
-      <select id="selSetor">
+      <select id="selSetor" style="padding:6px; font:inherit;">
         <option value="Consultório 1">Consultório 1</option>
         <option value="Consultório 2">Consultório 2</option>
         <option value="Consultório 3">Consultório 3</option>
@@ -111,18 +134,98 @@
         <option value="Consultório ______">Deixar em branco (preencher na caneta)</option>
       </select>
     </label>
-    <label>Quantidade de capas:
-      <input id="qtd" type="number" min="1" max="50" value="6" style="width:60px; padding:6px;">
+    <label>Quantidade:
+      <input id="qtd" type="number" min="1" max="50" value="6" style="width:60px; padding:6px; font:inherit;">
     </label>
     <label>Lote inicial:
-      <input id="loteIni" type="number" min="1" value="101" style="width:70px; padding:6px;">
+      <input id="loteIni" type="number" min="1" value="101" style="width:70px; padding:6px; font:inherit;">
     </label>
-    <button class="btn" id="btnGerar" type="button">Gerar</button>
+    <button class="btn" id="btnGerar" type="button">🔄 Gerar Capas</button>
     <button class="btn sec" onclick="window.print()" type="button">🖨️ Imprimir</button>
+    <a class="btn sec" href="./index.html">Voltar à Central</a>
   </div>
 
   <div id="folhas"></div>
 
-  <script src="/capas.js"></script>
+  <!-- Script 100% Inline para funcionar em qualquer servidor ou GitHub Pages sem erro 404 -->
+  <script>
+    'use strict';
+    const $ = id => document.getElementById(id);
+
+    function dataHoje() {
+      return new Date().toLocaleDateString('pt-BR');
+    }
+
+    function gerar() {
+      const setor = $('selSetor').value;
+      const qtd = Math.min(100, Math.max(1, parseInt($('qtd').value, 10) || 1));
+      const loteIni = parseInt($('loteIni').value, 10) || 101;
+      const container = $('folhas');
+      container.replaceChildren();
+
+      for (let i = 0; i < qtd; i++) {
+        const lote = loteIni + i;
+        const folha = document.createElement('div');
+        folha.className = 'pagina-a4';
+        folha.innerHTML = `
+          <div class="metade-verso">
+            <div>
+              <b>Controle de entrega e devolução</b>
+              <p style="margin:4px 0 0;">Esta capa protege o maço de 100 folhas de receituário A5. Mantenha as folhas dentro desta capa até o uso final.</p>
+            </div>
+            <div style="font-size:11px; line-height:1.6;">
+              Recebido por: ____________________________________ Data: ___/___/______<br>
+              Devolvido / descartado por: ________________________ Data: ___/___/______
+            </div>
+          </div>
+
+          <div class="linha-dobra">
+            <span>Dobre aqui ao meio para fechar o maço de A5</span>
+          </div>
+
+          <div class="metade-frente">
+            <div class="cab">
+              <h1>UPA Pediátrica — Controle de Receituários</h1>
+              <p>Papel A5 de uso restrito a prescrições, receitas e atendimentos da unidade</p>
+            </div>
+
+            <div class="quadro-lote">
+              <div>
+                <b>Número do lote</b>
+                <span>#A5-${String(lote).padStart(4, '0')}</span>
+              </div>
+              <div>
+                <b>Destino</b>
+                <span>${setor}</span>
+              </div>
+              <div>
+                <b>Conteúdo</b>
+                <span>100 folhas A5 (75g)</span>
+              </div>
+              <div>
+                <b>Data de liberação</b>
+                <span>${dataHoje()}</span>
+              </div>
+            </div>
+
+            <div class="aviso-legal">
+              <b>ATENÇÃO:</b> É expressamente proibida a utilização deste papel e das impressoras da unidade para fins particulares ou alheios ao atendimento assistencial. O consumo é auditado por lote, setor e plantão médico.
+            </div>
+
+            <div class="rodape-frente">
+              <span>TI / Almoxarifado — UPA Pediátrica</span>
+              <span>Preservar esta capa com o lote</span>
+            </div>
+          </div>
+        `;
+        container.append(folha);
+      }
+    }
+
+    $('btnGerar').addEventListener('click', gerar);
+    // Executa na hora que a página abre
+    window.addEventListener('DOMContentLoaded', gerar);
+    gerar();
+  </script>
 </body>
 </html>
