@@ -1,0 +1,207 @@
+{
+  "nomeUnidade": "UPA Pediátrica",
+  "porta": 8080,
+  "pinTI": "961248",
+  "horarioComercial": {
+    "inicio": "08:00",
+    "fim": "17:00",
+    "dias": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
+  },
+  "silenciarForaDoHorario": true,
+  "avisoForaDoHorario": "Seu chamado fica registrado e será atendido no próximo expediente. Se algo estiver impedindo o atendimento aos pacientes agora, siga o plano de contingência da unidade e avise o supervisor de plantão.",
+  "intervaloPingSegundos": 60,
+  "urlTesteInternet": "https://www.google.com/generate_204",
+  "healthcheckUrl": "",
+  "telegram": {
+    "token": "",
+    "chatId": ""
+  },
+  "setores": {
+    "Prédio principal": [
+      "Recepção",
+      "Triagem 1",
+      "Triagem 2",
+      "Triagem 3 (extra)",
+      "Consultório 1",
+      "Consultório 2",
+      "Consultório 3",
+      "Consultório 4",
+      "Consultório 6",
+      "Consultório 7",
+      "Sala Amarela",
+      "Sala Vermelha",
+      "Sala Verde (Medicação)",
+      "Sala de Coleta",
+      "Farmácia",
+      "Raio-X",
+      "Sala Multi",
+      "Sala Extra (2 PCs)",
+      "Recepção de Reavaliação",
+      "Coordenação Geral"
+    ],
+    "Anexo administrativo": [
+      "ADM 1 (Chefia, Segurança, Qualidade, RH)",
+      "ADM 2 (Faturamento, Enfermagem, Aprendiz)",
+      "ADM 3 (TI, Enfermagem)",
+      "ADM 4 (Coordenação Adm., Fiscal de Contratos)",
+      "Diretoria Técnica",
+      "Almoxarifado"
+    ]
+  },
+  "categorias": [
+    {
+      "id": "impressora",
+      "icone": "🖨️",
+      "rotulo": "Impressora",
+      "subopcoes": [
+        {
+          "id": "nao-imprime",
+          "rotulo": "Não imprime"
+        },
+        {
+          "id": "papel-preso",
+          "rotulo": "Papel preso / atolado"
+        },
+        {
+          "id": "termica",
+          "rotulo": "Impressora de etiqueta ou pulseira com falha"
+        },
+        {
+          "id": "falhada",
+          "rotulo": "Impressão falhada ou manchada"
+        },
+        {
+          "id": "raiox",
+          "rotulo": "Impressora ou digitalizadora do Raio-X",
+          "orientacao": "A impressora e a digitalizadora do Raio-X têm manutenção contratada (fora da TI). Avise o Supervisor Administrativo, que aciona a empresa responsável."
+        }
+      ]
+    },
+    {
+      "id": "computador",
+      "icone": "🖥️",
+      "rotulo": "Computador",
+      "subopcoes": [
+        {
+          "id": "nao-liga",
+          "rotulo": "Não liga"
+        },
+        {
+          "id": "travado",
+          "rotulo": "Travado ou muito lento"
+        },
+        {
+          "id": "perifericos",
+          "rotulo": "Tela, mouse ou teclado"
+        },
+        {
+          "id": "programa",
+          "rotulo": "Programa não abre"
+        }
+      ]
+    },
+    {
+      "id": "acesso",
+      "icone": "🔑",
+      "rotulo": "Acesso ao Windows",
+      "subopcoes": [
+        {
+          "id": "senha",
+          "rotulo": "Esqueci a senha / usuário bloqueado"
+        },
+        {
+          "id": "novo",
+          "rotulo": "Preciso de um usuário novo"
+        }
+      ]
+    },
+    {
+      "id": "rede",
+      "icone": "🌐",
+      "rotulo": "Internet / Rede",
+      "subopcoes": [
+        {
+          "id": "sem-internet",
+          "rotulo": "Sem internet neste computador"
+        },
+        {
+          "id": "lenta",
+          "rotulo": "Internet muito lenta"
+        },
+        {
+          "id": "geral",
+          "rotulo": "Vários computadores sem internet"
+        }
+      ]
+    },
+    {
+      "id": "celk",
+      "icone": "📋",
+      "rotulo": "Sistema CELK",
+      "subopcoes": [
+        {
+          "id": "fora",
+          "rotulo": "CELK não abre ou está muito lento"
+        },
+        {
+          "id": "senha",
+          "rotulo": "Esqueci a senha / usuário bloqueado",
+          "orientacao": "Usuário e senha do CELK são liberados somente pelo suporte da CELK. A TI da unidade não tem acesso para redefinir. Entre em contato direto com o suporte CELK."
+        },
+        {
+          "id": "erro",
+          "rotulo": "Erro numa tela ou dúvida de uso",
+          "orientacao": "Erros de tela e dúvidas de uso devem ser informados ao suporte CELK pelo próprio profissional, porque a TI não tem acesso ao sistema. Antes de ligar, anote a tela, o horário e a mensagem de erro (ou tire um print)."
+        }
+      ]
+    },
+    {
+      "id": "epa",
+      "icone": "🏥",
+      "rotulo": "Sistema EPA",
+      "subopcoes": [
+        {
+          "id": "senha",
+          "rotulo": "Usuário ou senha",
+          "orientacao": "Usuário e senha do EPA são liberados pelo RH da unidade, não pela TI. Procure o RH."
+        },
+        {
+          "id": "fora",
+          "rotulo": "EPA não abre ou está lento"
+        }
+      ]
+    },
+    {
+      "id": "senhas",
+      "icone": "🎫",
+      "rotulo": "Senhas / Painel de chamada",
+      "subopcoes": [
+        {
+          "id": "nao-gera",
+          "rotulo": "Não gera ou não chama senha"
+        },
+        {
+          "id": "tv",
+          "rotulo": "TV do painel apagada ou sem imagem"
+        }
+      ]
+    },
+    {
+      "id": "insumo",
+      "icone": "📦",
+      "rotulo": "Pedir insumo",
+      "tipo": "insumo"
+    },
+    {
+      "id": "outro",
+      "icone": "⚡",
+      "rotulo": "Outro assunto"
+    }
+  ]
+}

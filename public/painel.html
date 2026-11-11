@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Painel da TI</title>
+  <link rel="stylesheet" href="./estilo.css">
+</head>
+<body>
+  <header class="topo">
+    <div>
+      <h1 id="unidade">Painel da TI</h1>
+      <small id="subtitulo">Central de Chamados e Monitor</small>
+    </div>
+    <nav class="abas nao-imprimir" id="abas">
+      <button class="ativa" data-aba="chamados" type="button">Chamados</button>
+      <button data-aba="rede" type="button">Monitor da rede</button>
+      <button data-aba="relatorio" type="button">Relatório / Diretoria</button>
+      <button id="sair" type="button">Sair</button>
+    </nav>
+  </header>
+
+  <main>
+    <div id="login" class="card" style="max-width:380px; margin:40px auto;">
+      <h2>Acesso da TI</h2>
+      <p class="suave">Digite o PIN configurado no <code>config.json</code> para entrar.</p>
+      <form id="formLogin">
+        <label class="rotulo" for="pin">PIN da TI</label>
+        <input id="pin" type="password" inputmode="numeric" placeholder="PIN de acesso" autofocus autocomplete="current-password">
+        <div id="erroLogin" class="aviso vermelho oculto"></div>
+        <button class="btn grande bloco" type="submit">Entrar</button>
+      </form>
+    </div>
+
+    <div id="app" class="oculto">
+      <!-- Aba: Chamados -->
+      <section id="aba-chamados">
+        <div class="kpis">
+          <div class="kpi"><b><span id="kpiAbertos">0</span></b><span>Abertos agora</span></div>
+          <div class="kpi"><b><span id="kpiAtend">0</span></b><span>Em atendimento</span></div>
+          <div class="kpi"><b><span id="kpiHoje">0</span></b><span>Chamados hoje</span></div>
+          <div class="kpi"><b><span id="kpiResolvidos">0%</span></b><span>Taxa de resolução</span></div>
+          <div class="kpi"><b><span id="kpiTempo">-</span></b><span>Tempo médio (min)</span></div>
+        </div>
+
+        <div class="filtros nao-imprimir">
+          <button class="chip ativa" data-status="" type="button">Todos (<span id="cntTodos">0</span>)</button>
+          <button class="chip" data-status="Aberto" type="button">Abertos (<span id="cntAberto">0</span>)</button>
+          <button class="chip" data-status="Em atendimento" type="button">Em atendimento (<span id="cntAtend">0</span>)</button>
+          <button class="chip" data-status="Concluído" type="button">Concluídos (<span id="cntOk">0</span>)</button>
+          <button class="chip" data-status="Encaminhado" type="button">Encaminhados (<span id="cntEnc">0</span>)</button>
+          <input id="busca" placeholder="Buscar setor, nome ou texto...">
+        </div>
+
+        <div id="listaChamados"></div>
+      </section>
+
+      <!-- Aba: Monitor de Rede -->
+      <section id="aba-rede" class="oculto">
+        <div class="card">
+          <h2>Internet da unidade</h2>
+          <div id="statusInternet" class="aviso verde">Verificando...</div>
+          <p class="suave" id="infoInternet"></p>
+        </div>
+
+        <div class="card">
+          <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:wrap;">
+            <h2>Equipamentos da UPA (<span id="totalMaqs">0</span>)</h2>
+            <div class="suave">
+              <span class="badge b-ok">● Online: <b id="cntOn">0</b></span>
+              <span class="badge b-urg">● Fora: <b id="cntOff">0</b></span>
+              <span class="badge b-cinza">Sem IP: <b id="cntSemIp">0</b></span>
+            </div>
+          </div>
+          <p class="suave">Os IPs ficam salvos no arquivo <code>maquinas.csv</code>, que você pode editar no Excel. Para testar uma máquina nova, basta colocar o IP dela lá.</p>
+          <div id="gradeRede"></div>
+        </div>
+
+        <div class="card">
+          <h2>Equipamentos que saíram do ar recentemente</h2>
+          <div id="historicoEventos"></div>
+        </div>
+      </section>
+
+      <!-- Aba: Relatório para Diretoria -->
+      <section id="aba-relatorio" class="oculto">
+        <div class="card nao-imprimir">
+          <h2>Relatório de produtividade da TI</h2>
+          <p class="suave">Filtre o período e clique em Imprimir para gerar o documento formal com os gráficos e espaço para assinatura da Diretoria.</p>
+          <div class="linha">
+            <div>
+              <label class="rotulo" for="relDe">De</label>
+              <input id="relDe" type="date">
+            </div>
+            <div>
+              <label class="rotulo" for="relAte">Até</label>
+              <input id="relAte" type="date">
+            </div>
+          </div>
+          <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:12px;">
+            <button class="btn" id="btnImprimir" type="button">📄 Imprimir relatório (PDF)</button>
+            <a class="btn sec" id="btnCsv" href="/api/exportar.csv" download>📥 Baixar planilha (.csv)</a>
+            <a class="btn sec" href="/capas" target="_blank">🏷️ Imprimir capas de papel A5</a>
+            <a class="btn sec" href="/instalar-atalho.bat" download>⬇️ Baixar instalador do atalho (.bat)</a>
+          </div>
+        </div>
+
+        <div class="so-impressao">
+          <h2 style="font-size:20px; margin:0;" id="relTitulo">UPA Pediátrica — Relatório Técnico da TI</h2>
+          <p class="suave" id="relSubtitulo"></p>
+          <hr style="margin:14px 0;">
+        </div>
+
+        <div class="card">
+          <h2>Números do período</h2>
+          <div class="kpis">
+            <div class="kpi"><b><span id="relTotal">0</span></b><span>Total de chamados</span></div>
+            <div class="kpi"><b><span id="relResolvidos">0</span></b><span>Resolvidos pela TI</span></div>
+            <div class="kpi"><b><span id="relEncaminhados">0</span></b><span>Fora do escopo (CELK/EPA/Raio-X)</span></div>
+            <div class="kpi"><b><span id="relForaHorario">0</span></b><span>Abertos fora do expediente</span></div>
+            <div class="kpi"><b><span id="relTempoMedio">-</span></b><span>Tempo médio de conclusão</span></div>
+          </div>
+        </div>
+
+        <div class="linha">
+          <div class="card">
+            <h2>Chamados por tipo de problema</h2>
+            <div id="graficoCategorias"></div>
+          </div>
+          <div class="card">
+            <h2>Setores com mais chamados</h2>
+            <div id="graficoSetores"></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Histórico detalhado dos atendimentos</h2>
+          <div class="tabela-rolagem">
+            <table>
+              <thead>
+                <tr>
+                  <th>Nº</th>
+                  <th>Data/Hora</th>
+                  <th>Setor</th>
+                  <th>Tipo / Detalhe</th>
+                  <th>Solicitante</th>
+                  <th>Situação</th>
+                  <th>Solução registrada</th>
+                </tr>
+              </thead>
+              <tbody id="tabelaChamados"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card" id="cardEventosRelatorio">
+          <h2>Quedas registradas (Internet e equipamentos)</h2>
+          <div id="tabelaEventosRel"></div>
+        </div>
+
+        <div class="assinaturas so-impressao">
+          <div>
+            <b>Anderson Martins</b><br>
+            <span class="suave">Responsável pela TI — UPA Pediátrica</span>
+          </div>
+          <div>
+            <b>Diretoria da Unidade</b><br>
+            <span class="suave">Ciente e de acordo</span>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Modal para registrar solução -->
+  <dialog id="modalSolucao">
+    <form method="dialog" id="formSolucao">
+      <h2>O que foi feito?</h2>
+      <p class="suave" id="modalChamadoInfo"></p>
+      <label class="rotulo" for="txtSolucao">Solução do chamado</label>
+      <textarea id="txtSolucao" rows="3" maxlength="300" placeholder="Ex.: desobstruído rolete da impressora e alinhado papel"></textarea>
+      <div class="sugestoes" id="sugestoesSolucao"></div>
+      <div style="display:flex; justify-content:flex-end; gap:8px; margin-top:14px;">
+        <button class="btn sec peq" id="cancelarSolucao" type="button">Cancelar</button>
+        <button class="btn peq" type="submit">Concluir chamado</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="/painel.js"></script>
+</body>
+</html>

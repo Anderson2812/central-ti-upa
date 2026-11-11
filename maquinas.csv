@@ -1,0 +1,52 @@
+setor;nome;ip;critico
+Recepção;Recepção - PC senhas 1;;nao
+Recepção;Recepção - PC senhas 2;;nao
+Recepção;Recepção - PC painel de chamada (TV);;nao
+Recepção;Roteador Wi-Fi Recepção;;nao
+Triagem 1;Triagem 1 - servidor de senhas (XAMPP);;sim
+Triagem 2;Triagem 2 - PC;;nao
+Consultório 1;Consultório 1 - PC;;nao
+Consultório 2;Consultório 2 - PC;;nao
+Consultório 3;Consultório 3 - PC;;nao
+Consultório 4;Consultório 4 - PC;;nao
+Consultório 6;Consultório 6 - PC;;nao
+Consultório 7;Consultório 7 - PC;;nao
+Sala Amarela;Sala Amarela - PC 1;;nao
+Sala Amarela;Sala Amarela - PC 2;;nao
+Sala Amarela;Sala Amarela - PC 3;;nao
+Sala Amarela;Sala Amarela - PC 4;;nao
+Sala Amarela;Roteador Wi-Fi Sala Amarela;;nao
+Sala Vermelha;Sala Vermelha - PC 1;;nao
+Sala Vermelha;Sala Vermelha - PC 2;;nao
+Sala Verde (Medicação);Sala Verde - PC 1;;nao
+Sala Verde (Medicação);Sala Verde - PC 2;;nao
+Sala de Coleta;Coleta - PC;;nao
+Farmácia;Farmácia - PC;;nao
+Raio-X;Raio-X - PC 1;;nao
+Raio-X;Raio-X - PC 2;;nao
+Sala Multi;Sala Multi - PC 1;;nao
+Sala Multi;Sala Multi - PC 2;;nao
+Sala Extra (2 PCs);Sala Extra - PC 1;;nao
+Sala Extra (2 PCs);Sala Extra - PC 2;;nao
+Recepção de Reavaliação;Reavaliação - PC;;nao
+Coordenação Geral;Coordenação - PC;;nao
+Coordenação Geral;Firewall;;sim
+Coordenação Geral;Switch de distribuição;;sim
+Coordenação Geral;ONU provedor 1;;sim
+Coordenação Geral;ONU provedor 2;;sim
+Coordenação Geral;DVR das câmeras;;sim
+ADM 1 (Chefia, Segurança, Qualidade, RH);ADM 1 - Chefe de Seção;;nao
+ADM 1 (Chefia, Segurança, Qualidade, RH);ADM 1 - Técnica de Segurança;;nao
+ADM 1 (Chefia, Segurança, Qualidade, RH);ADM 1 - Analista da Qualidade;;nao
+ADM 1 (Chefia, Segurança, Qualidade, RH);ADM 1 - RH;;nao
+ADM 1 (Chefia, Segurança, Qualidade, RH);Impressora de rede ANEXO;;nao
+ADM 2 (Faturamento, Enfermagem, Aprendiz);ADM 2 - Faturamento;;nao
+ADM 2 (Faturamento, Enfermagem, Aprendiz);ADM 2 - Enfermagem;;nao
+ADM 2 (Faturamento, Enfermagem, Aprendiz);ADM 2 - Menor Aprendiz;;nao
+ADM 3 (TI, Enfermagem);ADM 3 - TI (servidor da Central);;nao
+ADM 3 (TI, Enfermagem);ADM 3 - Enfermagem;;nao
+ADM 4 (Coordenação Adm., Fiscal de Contratos);ADM 4 - Coordenação Adm. 1;;nao
+ADM 4 (Coordenação Adm., Fiscal de Contratos);ADM 4 - Coordenação Adm. 2;;nao
+ADM 4 (Coordenação Adm., Fiscal de Contratos);ADM 4 - Fiscal de Contratos;;nao
+Diretoria Técnica;Diretoria Técnica - PC;;nao
+Almoxarifado;Almoxarifado - PC;;nao

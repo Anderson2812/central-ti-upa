@@ -1,0 +1,86 @@
+[
+  {
+    "id": 1,
+    "criadoEm": "2026-11-11T04:39:33.471Z",
+    "setor": "Consultório 1",
+    "maquina": "",
+    "ip": "127.0.0.1",
+    "categoria": "impressora",
+    "categoriaRotulo": "🖨️ Impressora",
+    "detalhe": "Não imprime",
+    "insumo": null,
+    "quantidade": null,
+    "urgencia": "Normal",
+    "solicitante": "Dr. Lucas",
+    "descricao": "Fila presa",
+    "status": "Aberto",
+    "orientacao": "",
+    "solucao": "",
+    "foraDoHorario": true,
+    "atendidoEm": null,
+    "concluidoEm": null,
+    "historico": [
+      {
+        "em": "2026-11-11T04:39:33.471Z",
+        "acao": "Aberto",
+        "por": "Dr. Lucas"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "criadoEm": "2026-11-11T04:39:33.477Z",
+    "setor": "Triagem 1",
+    "maquina": "",
+    "ip": "127.0.0.1",
+    "categoria": "celk",
+    "categoriaRotulo": "📋 Sistema CELK",
+    "detalhe": "Esqueci a senha / usuário bloqueado",
+    "insumo": null,
+    "quantidade": null,
+    "urgencia": "Normal",
+    "solicitante": "Enf. Juliana",
+    "descricao": "",
+    "status": "Encaminhado",
+    "orientacao": "Usuário e senha do CELK são liberados somente pelo suporte da CELK. A TI da unidade não tem acesso para redefinir. Entre em contato direto com o suporte CELK.",
+    "solucao": "Orientado a seguir o fluxo do responsável (fora do escopo da TI).",
+    "foraDoHorario": true,
+    "atendidoEm": null,
+    "concluidoEm": "2026-11-11T04:39:33.477Z",
+    "historico": [
+      {
+        "em": "2026-11-11T04:39:33.477Z",
+        "acao": "Encaminhado automaticamente",
+        "por": "Enf. Juliana"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "criadoEm": "2026-11-11T04:39:33.484Z",
+    "setor": "Recepção",
+    "maquina": "",
+    "ip": "127.0.0.1",
+    "categoria": "insumo",
+    "categoriaRotulo": "📦 Pedir insumo",
+    "detalhe": "Bobina de pulseira × 2",
+    "insumo": "Bobina de pulseira",
+    "quantidade": 2,
+    "urgencia": "Normal",
+    "solicitante": "Carla Recepção",
+    "descricao": "",
+    "status": "Aberto",
+    "orientacao": "",
+    "solucao": "",
+    "foraDoHorario": true,
+    "atendidoEm": null,
+    "concluidoEm": null,
+    "historico": [
+      {
+        "em": "2026-11-11T04:39:33.484Z",
+        "acao": "Aberto",
+        "por": "Carla Recepção"
+      }
+    ]
+  }
+]
