@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chamar TI</title>
+  <link rel="stylesheet" href="./estilo.css">
+</head>
+<body>
+  <header class="topo">
+    <div>
+      <h1>🆘 Chamar a TI</h1>
+      <small id="unidade">UPA Pediátrica</small>
+    </div>
+    <a class="btn sec peq" href="#acompanhar">Acompanhar chamado</a>
+  </header>
+
+  <main>
+    <div id="foraHorario" class="aviso amarelo oculto"></div>
+
+    <form id="formulario" class="card" novalidate>
+      <div>
+        <label class="rotulo" for="setor">1. Onde você está?</label>
+        <div id="detectado" class="aviso verde oculto"></div>
+        <select id="setor"></select>
+      </div>
+
+      <div class="bloco">
+        <span class="rotulo">2. O que está acontecendo?</span>
+        <div id="categorias" class="grade"></div>
+      </div>
+
+      <div id="blocoSub" class="bloco oculto">
+        <span class="rotulo">Qual destas opções?</span>
+        <div id="subopcoes" class="grade"></div>
+      </div>
+
+      <div id="orientacao" class="aviso azul oculto"></div>
+
+      <div id="blocoInsumo" class="bloco oculto">
+        <div class="linha">
+          <div>
+            <label class="rotulo" for="insumo">Qual insumo?</label>
+            <select id="insumo"></select>
+          </div>
+          <div>
+            <label class="rotulo" for="quantidade">Quantidade</label>
+            <input id="quantidade" type="number" min="1" max="20" value="1">
+          </div>
+        </div>
+        <div id="semInsumo" class="aviso amarelo oculto"></div>
+      </div>
+
+      <div id="blocoUrgencia" class="bloco">
+        <span class="rotulo">3. Isso está parando o atendimento?</span>
+        <div class="grade duas">
+          <button type="button" class="opcao ativa" data-urgencia="Normal"><span class="ico">🟢</span>Não, dá para aguardar</button>
+          <button type="button" class="opcao urg" data-urgencia="Urgente"><span class="ico">🔴</span>Sim, está parando o atendimento</button>
+        </div>
+      </div>
+
+      <div class="linha bloco">
+        <div>
+          <label class="rotulo" for="solicitante">4. Seu nome</label>
+          <input id="solicitante" maxlength="60" placeholder="Ex.: Enf. Mariana" autocomplete="off">
+        </div>
+        <div>
+          <label class="rotulo" for="descricao">Detalhe (opcional)</label>
+          <input id="descricao" maxlength="300" placeholder="Ex.: luz vermelha piscando" autocomplete="off">
+        </div>
+      </div>
+
+      <div id="erro" class="aviso vermelho oculto"></div>
+      <button class="btn grande bloco" id="enviar" type="submit">Enviar para a TI</button>
+    </form>
+
+    <div id="sucesso" class="card oculto">
+      <p class="rotulo">Chamado registrado! Anote o número:</p>
+      <div class="protocolo" id="numero"></div>
+      <div id="msgSucesso" class="aviso verde"></div>
+      <button class="btn grande" id="novo" type="button">Abrir outro chamado</button>
+    </div>
+
+    <div id="acompanhar" class="card">
+      <h2>Acompanhar um chamado</h2>
+      <div class="linha">
+        <input id="numAcompanhar" type="number" min="1" placeholder="Número do chamado">
+        <button class="btn" id="btnAcompanhar" type="button">Ver situação</button>
+      </div>
+      <p id="resAcompanhar" class="suave"></p>
+    </div>
+  </main>
+
+  <script src="./index.js"></script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <title>Avisos para Monitores — Suporte de TI UPA Pediátrica</title>
+  <style>
+    @page { size: A4 portrait; margin: 10mm; }
+    * { box-sizing: border-box; }
+    body { font-family: "Segoe UI", system-ui, Arial, sans-serif; margin: 0; color: #0f172a; background: #f8fafc; }
+    .nao-imprimir { background: #0f766e; color: #fff; padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+    .btn { background: #fff; color: #0f766e; border: 0; padding: 10px 18px; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 14px; }
+    
+    /* Grade de 8 adesivos/avisos por folha A4 (tamanho ideal para colar na borda inferior do monitor ou na bancada) */
+    .folha-a4 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: repeat(4, 1fr);
+      gap: 8mm;
+      width: 190mm;
+      min-height: 275mm;
+      margin: 10mm auto;
+      page-break-after: always;
+    }
+    .adesivo {
+      border: 2px solid #0f766e;
+      border-radius: 10px;
+      padding: 10px 12px;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+    .adesivo-cab {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 2px solid #0f766e;
+      padding-bottom: 6px;
+    }
+    .adesivo-cab .ico { font-size: 26px; line-height: 1; }
+    .adesivo-cab h2 { margin: 0; font-size: 15px; color: #0f766e; text-transform: uppercase; letter-spacing: .02em; }
+    .adesivo-cab p { margin: 1px 0 0; font-size: 11px; color: #64748b; }
+
+    .adesivo-corpo {
+      margin: 8px 0;
+      font-size: 12px;
+      line-height: 1.35;
+      color: #334155;
+    }
+    .destaque-icone {
+      background: #f0fdfa;
+      border: 1px solid #99f6e4;
+      border-radius: 6px;
+      padding: 6px 8px;
+      margin: 6px 0;
+      font-weight: 700;
+      color: #0f766e;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .destaque-icone span.mouse { font-size: 18px; }
+
+    .lembrete-fora {
+      font-size: 10px;
+      color: #991b1b;
+      background: #fef2f2;
+      border-left: 3px solid #dc2626;
+      padding: 3px 6px;
+      border-radius: 2px;
+      margin-top: 4px;
+    }
+
+    .adesivo-rodape {
+      display: flex;
+      justify-content: space-between;
+      font-size: 9.5px;
+      color: #94a3b8;
+      border-top: 1px dashed #cbd5e1;
+      padding-top: 4px;
+    }
+
+    @media print {
+      .nao-imprimir { display: none !important; }
+      body { background: #fff; }
+      .folha-a4 { margin: 0; width: 100%; min-height: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="nao-imprimir">
+    <div>
+      <b>Avisos para colar nos Monitores dos Computadores:</b>
+      <span style="font-size:13px; opacity:.9; margin-left:8px;">8 avisos por folha A4. Imprima em papel comum (com durex) ou papel adesivo.</span>
+    </div>
+    <button class="btn" onclick="window.print()" type="button">🖨️ Imprimir Avisos</button>
+  </div>
+
+  <div class="folha-a4">
+    <!-- Repete 8 adesivos por folha -->
+    <script>
+      for (let i = 0; i < 8; i++) {
+        document.write(`
+          <div class="adesivo">
+            <div class="adesivo-cab">
+              <span class="ico">🆘</span>
+              <div>
+                <h2>Precisa de Suporte TI?</h2>
+                <p>Impressora, computador, rede ou senha do Windows</p>
+              </div>
+            </div>
+            <div class="adesivo-corpo">
+              <div>Abra seu chamado em 15 segundos:</div>
+              <div class="destaque-icone">
+                <span class="mouse">🖱️</span>
+                <span>Dê 2 cliques no ícone <b>"Chamar TI"</b> na Área de Trabalho deste PC</span>
+              </div>
+              <div class="lembrete-fora">
+                ⚠️ <b>Atenção:</b> Senha do CELK é com o suporte da CELK. Senha do EPA é com o RH.
+              </div>
+            </div>
+            <div class="adesivo-rodape">
+              <span>TI — UPA Pediátrica</span>
+              <span>Chamado registrado e priorizado</span>
+            </div>
+          </div>
+        `);
+      }
+    </script>
+  </div>
+</body>
+</html>
